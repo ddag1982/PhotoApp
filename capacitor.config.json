@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "PhotoApp",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
