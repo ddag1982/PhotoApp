@@ -1,21 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> PhotoApp </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Title</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
+
+  <ion-item *ngFor="let photo of photos; trackBy: trackByFn">
+    <span>{{photo.id}}</span>
+  </ion-item>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Cargando contenido">
+   
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <h1>Hola mundo</h1>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <app-photo-card></app-photo-card>
+    <app-photo-filter></app-photo-filter>
   </div>
 </ion-content>
