@@ -21,4 +21,10 @@ describe('PhotoFilterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('', () => {
+   const spy = spyOn(component.valueChanges, 'emit');
+    component.form.get('id').setValue(1);
+    expect(spy).toHaveBeenCalled();
+  });
 });

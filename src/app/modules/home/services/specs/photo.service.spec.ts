@@ -6,11 +6,20 @@ describe('PhotoService', () => {
   let service: PhotoService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [PhotoService]
+    });
     service = TestBed.inject(PhotoService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('', (done) => {
+    service.getPhotos().subscribe(res => {
+      expect(res.length).toEqual(4000);
+      done();
+    });
   });
 });

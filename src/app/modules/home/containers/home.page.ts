@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { InfiniteScrollCustomEvent, IonInfiniteScroll } from '@ionic/angular';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
+import { delay, takeUntil } from 'rxjs/operators';
 import { Photo, PhotoFilter } from '../interfaces';
 import { PhotoService } from '../services/photo.service';
 
@@ -53,11 +53,11 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     // Simulación de que está cargando
-    setTimeout(() => {
+    of('').pipe(delay(1500)).subscribe(() => {
       this.currentPage++;
       this.photoDataDisplayed.push(...this.getPhotosPage(this.currentPage));
       (scrollEvent as InfiniteScrollCustomEvent).target.complete();
-    }, 1500);
+    });
   }
 
   public valueChanges(formValue: PhotoFilter) {
