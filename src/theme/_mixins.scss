@@ -1,0 +1,15 @@
+@mixin desktopSize {
+    @media (min-width: 992px) {
+        @content;
+    }
+}
+
+@mixin phoneSize {
+    @media (max-width: 780px) {
+        @content;
+    }
+}
+
+
+
+

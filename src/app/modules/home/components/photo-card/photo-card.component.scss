@@ -1,4 +1,7 @@
+
+
 .app-photo-card {
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -10,6 +13,7 @@
     &__figure {
         position: relative;
         max-width: 500px;
+        margin: 0;
     }
 
     &__caption {

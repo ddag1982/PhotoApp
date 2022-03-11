@@ -1,3 +1,18 @@
-<p>
-  photo-filter works!
-</p>
+<form [formGroup]="form">
+  <ion-item>
+    <ion-label position="floating">
+      Filtrar por id
+    </ion-label>
+    <ion-input formControlName="id" type="number">
+  
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">
+      Filtrar por texto
+    </ion-label>
+    <ion-input formControlName="text">
+  
+    </ion-input>
+  </ion-item>
+</form>
