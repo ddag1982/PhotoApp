@@ -7,7 +7,6 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './containers/home.page';
 import { PhotoCardComponent } from './components/photo-card/photo-card.component';
 import { PhotoFilterComponent } from './components/photo-filter/photo-filter.component';
-import { PhotoServiceModule } from './services/photo-service.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     IonicModule,
     HomePageRoutingModule,
-    PhotoServiceModule,
   ],
   declarations: [HomePage, PhotoCardComponent, PhotoFilterComponent],
 })

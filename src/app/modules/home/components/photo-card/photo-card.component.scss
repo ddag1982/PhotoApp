@@ -1,0 +1,24 @@
+.app-photo-card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    &__title {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__figure {
+        position: relative;
+        max-width: 500px;
+    }
+
+    &__caption {
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        right: 0;
+        color: white;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}

@@ -11,10 +11,14 @@
     </ion-toolbar>
   </ion-header> -->
 
-  <ion-item *ngFor="let photo of photos; trackBy: trackByFn">
+  <!-- <ion-item *ngFor="let photo of photos; trackBy: trackByFn">
     <span>{{photo.id}}</span>
-  </ion-item>
+  </ion-item> -->
 
+  <div *ngFor="let photo of photoDataDisplayed; trackBy: trackByFn">
+    <app-photo-card [photo]="photo"></app-photo-card>
+  </div>
+  
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content
     loadingSpinner="bubbles"
@@ -25,7 +29,6 @@
 
 
   <div id="container">
-    <app-photo-card></app-photo-card>
-    <app-photo-filter></app-photo-filter>
+    <!-- <app-photo-filter></app-photo-filter> -->
   </div>
 </ion-content>

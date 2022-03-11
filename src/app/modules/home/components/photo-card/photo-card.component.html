@@ -1,3 +1,11 @@
-<p>
-  photo-card works!
-</p>
+<article class="app-photo-card">
+  <h2 class="app-photo-card__title">
+   {{ photo.text}}
+  </h2>
+  <figure class="app-photo-card__figure">
+    <img [src]="photo.photo" [alt]="'imagen' + photo.id" class="app-photo-card__image" (error)="onErrorImage($event)">
+    <figcaption class="app-photo-card__caption">
+      Photo #{{ photo.id }}
+    </figcaption>
+  </figure>
+</article>

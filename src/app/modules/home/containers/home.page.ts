@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { InfiniteScrollCustomEvent, IonInfiniteScroll } from '@ionic/angular';
-import { PhotoRequest } from '../interfaces';
-import { PhotoService } from '../services/photo.service';
+import { Photo } from '../interfaces';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +9,15 @@ import { PhotoService } from '../services/photo.service';
 })
 export class HomePage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  photos: PhotoRequest[] = [];
-  constructor(private photoService: PhotoService) {}
+  photoDataDisplayed: Photo[] = [];
+  private currentPage = 0;
+  private pageSize = 10;
+  private photoData: Photo[] = [];
+  constructor() {}
 
   ngOnInit(): void {
-    this.getPhotos();
+    this.photoData = this.generatePhotoArray();
+    this.photoDataDisplayed = this.getPhotosPage(this.currentPage);
   }
 
   trackByFn(index: number): number {
@@ -22,23 +25,33 @@ export class HomePage implements OnInit {
   }
 
   loadData(scrollEvent: InfiniteScrollCustomEvent): void {
-    if (this.photos.length === 45) {
+
+    if (this.photoDataDisplayed.length === 4000) {
       scrollEvent.target.complete();
       this.infiniteScroll.disabled = true;
       return;
     }
 
-    let morePhotos: PhotoRequest[] = [];
-    this.photoService.getPhotos().subscribe((res) => {
-      morePhotos = res;
-      this.photos.push(...morePhotos);
+    setTimeout(() => {
+      this.currentPage++;
+      this.photoDataDisplayed.push(...this.getPhotosPage(this.currentPage));
       scrollEvent.target.complete();
-    });
+    }, 1500);
   }
 
-  private getPhotos(): void {
-    this.photoService.getPhotos().subscribe((res) => {
-      this.photos = res;
-    });
+  private generatePhotoArray(): Photo[] {
+    const array: Photo[] = new Array(4000).fill('').map((element, i) => ({
+      id: i + 1,
+      photo: `https://picsum.photos/id/${i + 1}/500/500`,
+      text: `Title of photo ${i + 1}`,
+    }));
+    return array;
+  }
+
+  private getPhotosPage(page: number): Photo[] {
+    return this.photoData.slice(
+      page * this.pageSize,
+      this.pageSize * (page + 1)
+    );
   }
 }
