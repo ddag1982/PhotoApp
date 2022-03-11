@@ -7,7 +7,7 @@ describe('PhotoService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PhotoService]
+      providers: [PhotoService],
     });
     service = TestBed.inject(PhotoService);
   });
@@ -16,8 +16,8 @@ describe('PhotoService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('', (done) => {
-    service.getPhotos().subscribe(res => {
+  it('should return photos', (done) => {
+    service.getPhotos().subscribe((res) => {
       expect(res.length).toEqual(4000);
       done();
     });

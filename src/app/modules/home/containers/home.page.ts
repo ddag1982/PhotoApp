@@ -16,24 +16,25 @@ export class HomePage implements OnInit, OnDestroy {
   public photoDataDisplayed: Photo[] = [];
   public photoError: Photo = {
     text: 'No photos founded',
-    photo: 'https://static.ideal.es/www/pre2017/multimedia/noticias/201501/30/media/cortadas/HEIL--660x371.jpg',
-    id: -1
+    photo:
+      'https://static.ideal.es/www/pre2017/multimedia/noticias/201501/30/media/cortadas/HEIL--660x371.jpg',
+    id: -1,
   };
   private currentPage = 0;
   private pageSize = 10;
   private photoData: Photo[] = [];
   private destroy$: Subject<void> = new Subject<void>();
 
-
   constructor(private photoService: PhotoService) {}
 
   ngOnInit(): void {
-    this.photoService.getPhotos().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((response: Photo[]) => {
-      this.photoData = response;
-      this.photoDataDisplayed = this.getPhotosPage(this.currentPage);
-    });
+    this.photoService
+      .getPhotos()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response: Photo[]) => {
+        this.photoData = response;
+        this.photoDataDisplayed = this.getPhotosPage(this.currentPage);
+      });
   }
 
   ngOnDestroy(): void {
@@ -53,28 +54,28 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     // Simulación de que está cargando
-    of('').pipe(delay(1500)).subscribe(() => {
-      this.currentPage++;
-      this.photoDataDisplayed.push(...this.getPhotosPage(this.currentPage));
-      (scrollEvent as InfiniteScrollCustomEvent).target.complete();
-    });
+    of('')
+      .pipe(delay(1500))
+      .subscribe(() => {
+        this.currentPage++;
+        this.photoDataDisplayed.push(...this.getPhotosPage(this.currentPage));
+        (scrollEvent as InfiniteScrollCustomEvent).target.complete();
+      });
   }
 
   public valueChanges(formValue: PhotoFilter) {
-    this.photoDataDisplayed = this.photoData.filter(
-      (el, index) => {
-        if (formValue.id !== null) {
-          this.infiniteScroll.disabled = true;
-          return formValue.id === el.id;
-        }
-        if (formValue.text.trim() !== '') {
-          this.infiniteScroll.disabled = true;
-          return el.text.includes(formValue.text.trim());
-        }
-        this.infiniteScroll.disabled = false;
-        return index <= (this.currentPage + 1) * this.pageSize;
+    this.photoDataDisplayed = this.photoData.filter((photo, index) => {
+      if (formValue.id !== null) {
+        this.infiniteScroll.disabled = true;
+        return formValue.id === photo.id;
       }
-    );
+      if (formValue.text.trim() !== '') {
+        this.infiniteScroll.disabled = true;
+        return photo.text.includes(formValue.text.trim());
+      }
+      this.infiniteScroll.disabled = false;
+      return index <= (this.currentPage + 1) * this.pageSize;
+    });
   }
 
   private getPhotosPage(page: number): Photo[] {
@@ -83,6 +84,4 @@ export class HomePage implements OnInit, OnDestroy {
       this.pageSize * (page + 1)
     );
   }
-
-
 }

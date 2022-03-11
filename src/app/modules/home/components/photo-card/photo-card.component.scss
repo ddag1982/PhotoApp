@@ -8,8 +8,8 @@
 
     &__title {
         display: flex;
-        justify-content: center;
         font-size: 22px;
+        justify-content: center;
 
         @include tabletSize {
             font-size: 18px;
@@ -21,18 +21,18 @@
     }
 
     &__figure {
-        position: relative;
-        max-width: 500px;
         margin: 0;
+        max-width: 500px;
+        position: relative;
     }
 
     &__caption {
-        position: absolute;
-        bottom: 4px;
-        left: 0;
-        right: 0;
-        color: white;
-        padding: 10px;
         background-color: rgba(0, 0, 0, 0.5);
+        bottom: 4px;
+        color: white;
+        left: 0;
+        padding: 10px;
+        position: absolute;
+        right: 0;
     }
 }
