@@ -17,7 +17,7 @@ export class HomePage implements OnInit, OnDestroy {
   public photoError: Photo = {
     text: 'No photos founded',
     photo:
-      'https://static.ideal.es/www/pre2017/multimedia/noticias/201501/30/media/cortadas/HEIL--660x371.jpg',
+      'https://www.all-tools-online.com/wp-content/uploads/2018/06/noPhotoFound.png',
     id: -1,
   };
   private currentPage = 0;

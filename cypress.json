@@ -1,0 +1,14 @@
+{
+  "baseUrl": "http://localhost:5000",
+  "viewportHeight": 320,
+  "viewportWidth": 568,
+  "chromeWebSecurity": false,
+  "fixturesFolder": "cypress/fixtures",
+  "integrationFolder": "cypress/integration",
+  "supportFile": "cypress/support/index.ts",
+  "fileServerFolder": ".",
+  "pluginsFile": "cypress/plugins/index",
+  "video": true,
+  "videosFolder": "../../dist/cypress/photo-app-e2e/videos",
+  "screenshotsFolder": "../../dist/cypress/photo-app-e2e/screenshots"
+}
