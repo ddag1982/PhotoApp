@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { of } from 'rxjs';
 import { Photo, PhotoFilter } from '../../interfaces';
@@ -61,6 +61,21 @@ describe('HomePage', () => {
     expect(component.infiniteScroll.disabled).toBeTrue();
   });
 
+  it('should load data', fakeAsync(() => {
+   const childComponent = jasmine.createSpyObj('IonInfiniteScroll', ['disabled']);
+     component.infiniteScroll = childComponent;
+    const scrollEventMock = {
+      target: {
+        complete: jasmine.createSpy('complete')
+      }
+    };
+    component.loadData(scrollEventMock as any);
+    tick();
+    // eslint-disable-next-line @typescript-eslint/dot-notation
+    component.photoDataDisplayed.length = component['photoData'].length;
+    expect(component.infiniteScroll.disabled).toBeTrue();
+  }));
+
   it('should valueChanges with id null', () => {
     const photoFilterMock: PhotoFilter = {
       id: null,
@@ -70,7 +85,7 @@ describe('HomePage', () => {
     expect(component.infiniteScroll.disabled).toBeTrue();
   });
 
-  it('should valueChanges', () => {
+  it('should valueChanges with id null and empty text', () => {
     const photoFilterMock: PhotoFilter = {
       id: null,
       text: '',
