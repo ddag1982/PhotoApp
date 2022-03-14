@@ -63,7 +63,7 @@ export class HomePage implements OnInit, OnDestroy {
       });
   }
 
-  public valueChanges(formValue: PhotoFilter) {
+  public valueChanges(formValue: PhotoFilter): void {
     this.photoDataDisplayed = this.photoData.filter((photo, index) => {
       if (formValue.id !== null) {
         this.infiniteScroll.disabled = true;

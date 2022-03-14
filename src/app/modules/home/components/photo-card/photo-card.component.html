@@ -8,6 +8,7 @@
       [alt]="'imagen' + photo.id"
       class="app-photo-card__image"
       (error)="onErrorImage($event)"
+      loading="lazy"
     />
     <figcaption class="app-photo-card__caption">
       {{ figCaption }}
